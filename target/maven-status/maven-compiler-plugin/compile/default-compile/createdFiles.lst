@@ -1,0 +1,4 @@
+br\com\digidata\crud\package-info.class
+br\com\digidata\crud\service\ICrudService.class
+br\com\digidata\crud\service\CrudService.class
+br\com\digidata\crud\exception\ResourceNotFoundException.class
