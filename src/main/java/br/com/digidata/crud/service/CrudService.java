@@ -2,7 +2,13 @@ package br.com.digidata.crud.service;
 
 import br.com.digidata.crud.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.beans.PropertyDescriptor;
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,8 +39,27 @@ public abstract class CrudService<T, ID>
 
     @Override
     public T update(ID id, T entity) {
-        findById(id);
+
+        T current = findById(id);
+
+        BeanUtils.copyProperties(
+                entity,
+                current,
+                getNullPropertyNames(entity)
+        );
         return repository.save(entity);
+    }
+    private String[] getNullPropertyNames(Object source) {
+
+        BeanWrapper wrapper =
+                new BeanWrapperImpl(source);
+
+        return Arrays.stream(wrapper.getPropertyDescriptors())
+                .map(PropertyDescriptor::getName)
+                .filter(name ->
+                        wrapper.getPropertyValue(name) == null
+                )
+                .toArray(String[]::new);
     }
 
     @Override
