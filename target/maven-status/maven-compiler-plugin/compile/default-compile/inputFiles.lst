@@ -1,4 +1,8 @@
-C:\projetos\wagner\crud-core\src\main\java\br\com\digidata\crud\exception\ResourceNotFoundException.java
-C:\projetos\wagner\crud-core\src\main\java\br\com\digidata\crud\package-info.java
-C:\projetos\wagner\crud-core\src\main\java\br\com\digidata\crud\service\CrudService.java
-C:\projetos\wagner\crud-core\src\main\java\br\com\digidata\crud\service\ICrudService.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\controller\CrudController.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\controller\dto\request\IRequest.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\controller\dto\response\IResponse.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\controller\ICrudController.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\exception\ResourceNotFoundException.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\package-info.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\service\CrudService.java
+E:\wagner\libs\crud-lib-spring\src\main\java\br\com\digidata\crud\service\ICrudService.java

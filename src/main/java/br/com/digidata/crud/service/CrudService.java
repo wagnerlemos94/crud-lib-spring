@@ -11,10 +11,13 @@ import java.beans.PropertyDescriptor;
 import java.util.Arrays;
 import java.util.List;
 
-@RequiredArgsConstructor
 public abstract class CrudService<T, ID>
         implements ICrudService<T, ID> {
     protected final JpaRepository<T, ID> repository;
+
+    public CrudService(JpaRepository<T, ID> repository) {
+        this.repository = repository;
+    }
 
     @Override
     public T findById(ID id) {

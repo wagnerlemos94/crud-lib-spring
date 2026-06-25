@@ -1,4 +1,8 @@
-br\com\digidata\crud\package-info.class
+br\com\digidata\crud\controller\dto\response\IResponse.class
 br\com\digidata\crud\service\ICrudService.class
 br\com\digidata\crud\service\CrudService.class
 br\com\digidata\crud\exception\ResourceNotFoundException.class
+br\com\digidata\crud\controller\ICrudController.class
+br\com\digidata\crud\controller\CrudController.class
+br\com\digidata\crud\package-info.class
+br\com\digidata\crud\controller\dto\request\IRequest.class
