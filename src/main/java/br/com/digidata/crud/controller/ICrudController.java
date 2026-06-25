@@ -18,7 +18,7 @@ public interface ICrudController<Request, Response> {
     @GetMapping
     List<Response> list();
     @GetMapping("{id}")
-    Response findById(@PathVariable UUID id) throws Exception;
+    Response findById(@PathVariable UUID id);
     @DeleteMapping
     void delete(@PathVariable UUID id);
 }
