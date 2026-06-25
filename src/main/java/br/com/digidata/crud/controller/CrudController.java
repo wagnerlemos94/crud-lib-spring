@@ -37,8 +37,8 @@ public class CrudController<Request , Response, Model> implements ICrudControlle
     }
 
     @Override
-    public Response findById(String id) throws Exception {
-        return response.to(service.findById(UUID.fromString(id)));
+    public Response findById(UUID id){
+        return response.to(service.findById(id));
     }
 
     @Override
