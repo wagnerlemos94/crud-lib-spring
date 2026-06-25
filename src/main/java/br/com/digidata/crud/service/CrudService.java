@@ -50,18 +50,22 @@ public abstract class CrudService<T, ID>
                 current,
                 getNullPropertyNames(entity)
         );
-        return repository.save(entity);
+        return repository.save(current);
     }
     private String[] getNullPropertyNames(Object source) {
 
-        BeanWrapper wrapper =
-                new BeanWrapperImpl(source);
+        BeanWrapper wrapper = new BeanWrapperImpl(source);
 
         return Arrays.stream(wrapper.getPropertyDescriptors())
                 .map(PropertyDescriptor::getName)
-                .filter(name ->
-                        wrapper.getPropertyValue(name) == null
-                )
+                .filter(name -> !name.equals("class"))
+                .filter(name -> {
+                    try {
+                        return wrapper.getPropertyValue(name) == null;
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
                 .toArray(String[]::new);
     }
 

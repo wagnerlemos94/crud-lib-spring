@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface ICrudController<Request, Response> {
     @PostMapping
     Response create(@RequestBody Request request);
-    @PutMapping
+    @PutMapping({"{id}"})
     Response update(@RequestBody Request request, @PathVariable UUID id);
     @GetMapping
     List<Response> list();

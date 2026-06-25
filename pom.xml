@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>br.com.digidata</groupId>
     <artifactId>crud-core</artifactId>
-    <version>1.2.3</version>
+    <version>1.2.5</version>
     <packaging>jar</packaging>
     <name>crud-core</name>
     <description>Biblioteca CRUD genérica para projetos Spring</description>
