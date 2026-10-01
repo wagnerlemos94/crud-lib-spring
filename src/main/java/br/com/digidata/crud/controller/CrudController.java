@@ -4,18 +4,19 @@ import br.com.digidata.crud.controller.dto.request.IRequest;
 import br.com.digidata.crud.controller.dto.response.IResponse;
 import br.com.digidata.crud.service.ICrudService;
 
-import java.util.List;
-import java.util.UUID;
+import br.com.digidata.crud.controller.dto.response.PageResponse;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-public class CrudController<Request , Response, Model> implements ICrudController<Request, Response>{
+public class CrudController<Request, Response, Model, ID> implements ICrudController<Request, Response, ID>{
 
-    public final ICrudService<Model, UUID> service;
+    public final ICrudService<Model, ID> service;
 
     public final IRequest<Request, Model> request;
 
     public final IResponse<Model, Response> response;
 
-    public CrudController(ICrudService<Model, UUID> service, IRequest<Request, Model> request, IResponse<Model, Response> response){
+    public CrudController(ICrudService<Model, ID> service, IRequest<Request, Model> request, IResponse<Model, Response> response){
         this.service = service;
         this.request = request;
         this.response = response;
@@ -27,22 +28,25 @@ public class CrudController<Request , Response, Model> implements ICrudControlle
     }
 
     @Override
-    public Response update(Request request, UUID id) {
+    public Response update(Request request, ID id) {
         return response.to(service.update(id, this.request.to(request)));
     }
 
     @Override
-    public List<Response> list() {
-        return response.to(service.findAll());
+    public PageResponse<Response> list(Pageable pageable) {
+        Pageable bounded = pageable.isUnpaged()
+                ? PageRequest.of(0, 20, pageable.getSort())
+                : PageRequest.of(pageable.getPageNumber(), Math.min(pageable.getPageSize(), 100), pageable.getSort());
+        return PageResponse.from(service.findAll(bounded).map(response::to));
     }
 
     @Override
-    public Response findById(UUID id){
+    public Response findById(ID id){
         return response.to(service.findById(id));
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(ID id) {
         service.delete(id);
     }
 }
